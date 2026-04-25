@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>pyproject.toml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bcbec4;}
+.s1 { color: #cf8e6d;}
+.s2 { color: #6aab73;}
+.s3 { color: #7a7e85;}
+.s4 { color: #bcbec4;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+pyproject.toml</font>
+</center></td></tr></table>
+<pre><span class="s0">[</span><span class="s1">project</span><span class="s0">]</span>
+<span class="s1">name </span><span class="s0">= </span><span class="s2">&quot;pythonproject1&quot;</span>
+<span class="s1">version </span><span class="s0">= </span><span class="s2">&quot;0.1.0&quot;</span>
+<span class="s1">description </span><span class="s0">= </span><span class="s2">&quot;&quot;</span>
+<span class="s1">authors </span><span class="s0">= [</span>
+    <span class="s0">{</span><span class="s1">name </span><span class="s0">= </span><span class="s2">&quot;Your Name&quot;</span><span class="s0">,</span><span class="s1">email </span><span class="s0">= </span><span class="s2">&quot;you@example.com&quot;</span><span class="s0">}</span>
+<span class="s0">]</span>
+<span class="s1">requires-python </span><span class="s0">= </span><span class="s2">&quot;&gt;=3.14&quot;</span>
+<span class="s1">dependencies </span><span class="s0">= [</span>
+<span class="s0">]</span>
+
+
+<span class="s0">[</span><span class="s1">build-system</span><span class="s0">]</span>
+<span class="s1">requires </span><span class="s0">= [</span><span class="s2">&quot;poetry-core&gt;=2.0.0,&lt;3.0.0&quot;</span><span class="s0">]</span>
+<span class="s1">build-backend </span><span class="s0">= </span><span class="s2">&quot;poetry.core.masonry.api&quot;</span>
+
+<span class="s0">[</span><span class="s1">dependency-groups</span><span class="s0">]</span>
+<span class="s1">lint </span><span class="s0">= [</span>
+    <span class="s2">&quot;flake8 (&gt;=7.3.0,&lt;8.0.0)&quot;</span><span class="s0">,</span>
+    <span class="s2">&quot;mypy (&gt;=1.20.1,&lt;2.0.0)&quot;</span><span class="s0">,</span>
+    <span class="s2">&quot;black (&gt;=26.3.1,&lt;27.0.0)&quot;</span><span class="s0">,</span>
+    <span class="s2">&quot;isort (&gt;=8.0.1,&lt;9.0.0)&quot;</span>
+<span class="s0">]</span>
+<span class="s0">[</span><span class="s1">tool</span><span class="s0">.</span><span class="s1">black</span><span class="s0">]</span>
+<span class="s3"># Максимальная длина строки</span>
+<span class="s1">line-length </span><span class="s0">= 119</span>
+<span class="s3"># Файлы, которые не нужно форматировать</span>
+<span class="s1">exclude </span><span class="s0">= </span><span class="s2">''' 
+( 
+  /( 
+      \.eggs         # Исключить несколько общих каталогов 
+    | \.git          # в корне проекта 
+    | \.hg 
+    | \.mypy_cache 
+    | \.tox 
+    | \.venv 
+    | dist 
+  )/ 
+  | foo.py           # Также отдельно исключить файл с именем foo.py 
+                     # в корне проекта 
+) 
+'''</span>
+<span class="s0">[</span><span class="s1">tool</span><span class="s0">.</span><span class="s1">isort</span><span class="s0">]</span>
+<span class="s1">profile </span><span class="s0">= </span><span class="s2">&quot;black&quot;</span>
+<span class="s3"># максимальная длина строки</span>
+<span class="s1">line_length </span><span class="s0">= 119</span>
+
+<span class="s0">[</span><span class="s1">tool</span><span class="s0">.</span><span class="s1">mypy</span><span class="s0">]</span>
+<span class="s1">disallow_untyped_defs </span><span class="s0">= </span><span class="s4">true</span>
+<span class="s1">no_implicit_optional </span><span class="s0">= </span><span class="s4">true</span>
+<span class="s1">warn_return_any </span><span class="s0">= </span><span class="s4">true</span>
+<span class="s1">exclude </span><span class="s0">= [</span>
+    <span class="s2">&quot;venv&quot;</span><span class="s0">,</span>
+    <span class="s2">&quot;</span><span class="s1">\\</span><span class="s2">.venv&quot;</span><span class="s0">,</span>
+    <span class="s2">&quot;build&quot;</span><span class="s0">,</span>
+    <span class="s2">&quot;dist&quot;</span>
+<span class="s0">]</span>
+
+</pre>
+</body>
+</html>
