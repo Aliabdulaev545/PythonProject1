@@ -2,7 +2,7 @@
 Модуль с функциями обработки данных банковских операций.
 """
 
-from typing import Any, Dict, List
+from typing import List, Dict, Any
 
 
 def filter_by_state(operations: List[Dict[str, Any]], state: str = 'EXECUTED') -> List[Dict[str, Any]]:
@@ -28,7 +28,7 @@ def filter_by_state(operations: List[Dict[str, Any]], state: str = 'EXECUTED') -
             {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}
         ]
     """
-    return [op for op in operations if op.get('state') == state]
+    return [operation for operation in operations if operation.get('state') == state]
 
 
 def sort_by_date(operations: List[Dict[str, Any]], descending: bool = True) -> List[Dict[str, Any]]:
@@ -37,7 +37,8 @@ def sort_by_date(operations: List[Dict[str, Any]], descending: bool = True) -> L
 
     Аргументы:
         operations (List[Dict[str, Any]]): Список словарей с данными операций.
-        descending (bool): Порядок сортировки. True - по убыванию (сначала новые), False - по возрастанию.
+        descending (bool): Порядок сортировки.
+            True - по убыванию (сначала новые), False - по возрастанию.
 
     Возвращает:
         List[Dict[str, Any]]: Новый отсортированный список операций.
@@ -53,4 +54,4 @@ def sort_by_date(operations: List[Dict[str, Any]], descending: bool = True) -> L
             {'id': 41428829, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}
         ]
     """
-    return sorted(operations, key=lambda x: x.get('date', ''), reverse=descending)
+    return sorted(operations, key=lambda operation: operation.get('date', ''), reverse=descending)
