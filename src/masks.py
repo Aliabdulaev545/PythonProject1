@@ -17,6 +17,11 @@ def get_mask_card_number(card_number: str) -> str:
     Возвращает:
         str: Замаскированный номер карты.
     '''
+
+    # Проверка на некорректную длину
+    if len(card_number) != 16:
+        return "Неверный номер карты"
+
     # Блоки по 4 цифры
     block1 = card_number[:4]      # первые 4 цифры
     block2 = card_number[4:6]     # 5-6 цифры
@@ -39,5 +44,9 @@ def get_mask_account(account_number: str) -> str:
     Возвращает:
         str: Замаскированный номер счёта.
     '''
+
+    if len(account_number) < 4:
+        return f"**{account_number}"
+
     # Показываем только последние 4 цифры
     return f"**{account_number[-4:]}"

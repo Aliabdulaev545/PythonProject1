@@ -1,5 +1,5 @@
 import pytest
-from src.calc import add, subtract, multiply, divide, calculate_logarithm
+from src.calc import add, subtract, multiply, divide, calculate_logarithm, reverse_string
 
 
 # Тест функции сложения
@@ -34,3 +34,17 @@ def test_calculate_logarithm_with_negative_number():
 
     # Проверяем, что сообщение об ошибке соответствует ожидаемому
     assert str(exc_info.value) == "Логарифм можно вычислить только для положительных чисел"
+
+def test_sum(number_list):
+    # Проверяем, что сумма чисел в списке равна 15
+    assert sum(number_list) == 15
+
+
+@pytest.mark.parametrize("string, expected_result", [
+    ("hello", "olleh"),
+    ("world", "dlrow"),
+    ("12345", "54321"),
+    ("", ""),
+])
+def test_reverse_string(string, expected_result):
+    assert reverse_string(string) == expected_result
