@@ -155,3 +155,20 @@ isort src/
 
 # Запуск всех тестов с отчётом о покрытии
 pytest -v --cov=src --cov-report=html
+
+### Модуль generators
+
+Содержит генераторы для эффективной обработки данных транзакций.
+
+#### `filter_by_currency(transactions, currency_code)`
+
+Генератор, фильтрующий транзакции по заданной валюте.
+
+**Пример:**
+```python
+from src.generators import filter_by_currency
+
+transactions = [ ... ]  # список транзакций
+usd_transactions = filter_by_currency(transactions, "USD")
+for transaction in usd_transactions:
+    print(transaction["id"])
