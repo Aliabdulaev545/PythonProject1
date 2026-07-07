@@ -4,7 +4,7 @@
 
 import functools
 import os
-from typing import Any, Callable, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar, cast
 
 F = TypeVar('F', bound=Callable[..., Any])
 
@@ -42,7 +42,7 @@ def log(filename: Optional[str] = None) -> Callable[[F], F]:
                 )
                 _write_log(error_message, filename)
                 raise
-        return wrapper
+        return cast(F, wrapper)
     return decorator
 
 
@@ -64,3 +64,4 @@ def _write_log(message: str, filename: Optional[str] = None) -> None:
             f.write(message + '\n')
     else:
         print(message)
+
