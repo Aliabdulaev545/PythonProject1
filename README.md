@@ -26,3 +26,25 @@ cp .env.example .env
 
 ## Лицензия:
 Этот проект лицензирован по [лицензии MIT](LICENSE).
+
+### Модуль decorators
+
+Содержит декоратор `log` для логирования выполнения функций.
+
+#### `@log(filename=None)`
+
+Декоратор для автоматического логирования выполнения функции.
+
+**Параметры:**
+- `filename` (str, опционально) — имя файла для записи логов.
+  Если не указан, логи выводятся в консоль.
+
+**Пример использования:**
+```python
+from src.decorators import log
+
+@log(filename="logs/myapp.log")
+def process_data(data):
+    return data * 2
+
+process_data(10)  # Запишет "process_data ok" в файл logs/myapp.log
