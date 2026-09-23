@@ -2,29 +2,36 @@ import os
 import requests
 from dotenv import load_dotenv
 
-load_dotenv('.env')
+load_dotenv()
 
-API_KEY = '2a51789b2ecc856a96de69ef1b17d42c'
+API_KEY = os.getenv('API_KEY')
+if not API_KEY:
+    raise ValueError('API_KEY не найден в .env')
 
 
-def get_coords(city, str) -> tuple:
+def get_coords(city: str) -> tuple:
     '''Получение координат по названию города'''
-    response = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={city}&appid{API_KEY}')
+    url = f'http://api.openweathermap.org/geo/1.0/direct?q={city}&appid={API_KEY}'
+    response = requests.get(url)
+    data = response.json()
 
-    lat = response.json()[0]['lat']
-    lon = response.json()[0]['lon']
+    if not data:
+        raise ValueError(f'Город "{city}" не найден')
 
-    return lat, lon
+    return data[0]['lat'], data[0]['lon']
 
 
-def get_weather(lat: float, lon: float) -> str:
-   '''Получение погоды по координатам'''
-   response = requests.get(f'http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}')
-
-   print(response.json())
-
+def get_weather(lat: float, lon: float) -> dict:
+    '''Получение погоды по координатам'''
+    url = (
+        f'http://api.openweathermap.org/data/2.5/weather'
+        f'?lat={lat}&lon={lon}&appid={API_KEY}&units=metric&lang=ru'
+    )
+    response = requests.get(url)
+    return response.json()
 
 
 if __name__ == '__main__':
     lat, lon = get_coords('Moscow')
-    get_weather(lat, lon)
+    weather = get_weather(lat, lon)
+    print(weather)
