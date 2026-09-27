@@ -2,10 +2,10 @@
 Модуль с функциями обработки данных банковских операций.
 """
 
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
 
-def filter_by_state(operations: List[Dict[str, Any]], state: str = 'EXECUTED') -> List[Dict[str, Any]]:
+def filter_by_state(operations: List[Dict[str, Any]], state: str = "EXECUTED") -> List[Dict[str, Any]]:
     """
     Фильтрует список операций по значению ключа 'state'.
 
@@ -28,7 +28,7 @@ def filter_by_state(operations: List[Dict[str, Any]], state: str = 'EXECUTED') -
             {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}
         ]
     """
-    return [operation for operation in operations if operation.get('state') == state]
+    return [operation for operation in operations if operation.get("state") == state]
 
 
 def sort_by_date(operations: List[Dict[str, Any]], descending: bool = True) -> List[Dict[str, Any]]:
@@ -54,4 +54,4 @@ def sort_by_date(operations: List[Dict[str, Any]], descending: bool = True) -> L
             {'id': 41428829, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572'}
         ]
     """
-    return sorted(operations, key=lambda operation: operation.get('date', ''), reverse=descending)
+    return sorted(operations, key=lambda operation: operation.get("date", ""), reverse=descending)

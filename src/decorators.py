@@ -6,7 +6,7 @@ import functools
 import os
 from typing import Any, Callable, Optional, TypeVar, cast
 
-F = TypeVar('F', bound=Callable[..., Any])
+F = TypeVar("F", bound=Callable[..., Any])
 
 
 def log(filename: Optional[str] = None) -> Callable[[F], F]:
@@ -27,6 +27,7 @@ def log(filename: Optional[str] = None) -> Callable[[F], F]:
 
         my_function(1, 2)  # Запишет "my_function ok" в mylog.txt
     """
+
     def decorator(func: F) -> F:
         @functools.wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
@@ -36,13 +37,12 @@ def log(filename: Optional[str] = None) -> Callable[[F], F]:
                 _write_log(log_message, filename)
                 return result
             except Exception as e:
-                error_message = (
-                    f"{func.__name__} error: {type(e).__name__}. "
-                    f"Inputs: {args}, {kwargs}"
-                )
+                error_message = f"{func.__name__} error: {type(e).__name__}. " f"Inputs: {args}, {kwargs}"
                 _write_log(error_message, filename)
                 raise
+
         return cast(F, wrapper)
+
     return decorator
 
 
@@ -60,8 +60,7 @@ def _write_log(message: str, filename: Optional[str] = None) -> None:
         log_dir = os.path.dirname(filename)
         if log_dir:
             os.makedirs(log_dir, exist_ok=True)
-        with open(filename, 'a', encoding='utf-8') as f:
-            f.write(message + '\n')
+        with open(filename, "a", encoding="utf-8") as f:
+            f.write(message + "\n")
     else:
         print(message)
-

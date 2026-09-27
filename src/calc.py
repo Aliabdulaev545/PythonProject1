@@ -1,24 +1,29 @@
 import math
 
 
-def add(x, y):
-    return x + y
+def add(a: float, b: float) -> float:
+    return a + b
 
-def subtract(x, y):
+
+def subtract(x: float, y: float) -> float:
     return x - y
 
-def multiply(x, y):
+
+def multiply(x: float, y: float) -> float:
     return x * y
 
-def divide(x, y):
+
+def divide(x: float, y: float) -> float:
     if y == 0:
-        raise ZeroDivisionError('Деление на ноль невозможно')
+        raise ZeroDivisionError("Деление на ноль невозможно")
     return x / y
 
-def calculate_logarithm(number):
+
+def calculate_logarithm(number: float) -> float:
     if number <= 0:
         raise ValueError("Логарифм можно вычислить только для положительных чисел")
     return math.log(number)
 
-def reverse_string(string):
+
+def reverse_string(string: str) -> str:
     return string[::-1]

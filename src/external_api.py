@@ -41,9 +41,7 @@ def convert_to_rub(transaction: Dict[str, Any]) -> float:
     # Для USD и EUR — конвертируем через API
     if currency_code in ("USD", "EUR"):
         if not API_KEY:
-            raise ValueError(
-                "API key not found. Set EXCHANGE_RATES_API_KEY in .env file."
-            )
+            raise ValueError("API key not found. Set EXCHANGE_RATES_API_KEY in .env file.")
 
         url = "https://api.apilayer.com/exchangerates_data/convert"
         params = {

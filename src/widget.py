@@ -2,7 +2,6 @@
 Модуль с функциями для работы с виджетом банковских операции.
 """
 
-
 from src.masks import get_mask_account, get_mask_card_number
 
 
@@ -12,7 +11,7 @@ def mask_account_card(account_card_info: str) -> str:
     возвращает строку с замаскированным номером.
     """
 
-    parts = account_card_info.rsplit(' ', 1)
+    parts = account_card_info.rsplit(" ", 1)
 
     if len(parts) != 2:
         return "Неверный формат ввода"
@@ -39,17 +38,17 @@ def get_date(date_string: str) -> str:
     """
     try:
         # Проверка, что строка содержит 'T'
-        if 'T' not in date_string:
+        if "T" not in date_string:
             return date_string
 
-        date_part = date_string.split('T')[0]
+        date_part = date_string.split("T")[0]
 
         # Проверка, что дата содержит три части
-        parts = date_part.split('-')
+        parts = date_part.split("-")
         if len(parts) != 3:
             return date_string
 
         year, month, day = parts
         return f"{day}.{month}.{year}"
-    except (ValueError, AttributeError):
+    except ValueError, AttributeError:
         return date_string

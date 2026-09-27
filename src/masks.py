@@ -1,10 +1,10 @@
-'''
+"""
 Модуль с функциями маскировки номеров карт и счетов.
-'''
+"""
 
 
 def get_mask_card_number(card_number: str) -> str:
-    '''
+    """
     Маскирует номер банковской карты.
 
     Формат: "XXXX XX** **** XXXX"
@@ -16,23 +16,23 @@ def get_mask_card_number(card_number: str) -> str:
 
     Возвращает:
         str: Замаскированный номер карты.
-    '''
+    """
 
     # Проверка на некорректную длину
     if len(card_number) != 16:
         return "Неверный номер карты"
 
     # Блоки по 4 цифры
-    block1 = card_number[:4]      # первые 4 цифры
-    block2 = card_number[4:6]     # 5-6 цифры
-    block4 = card_number[-4:]     # последние 4 цифры
+    block1 = card_number[:4]  # первые 4 цифры
+    block2 = card_number[4:6]  # 5-6 цифры
+    block4 = card_number[-4:]  # последние 4 цифры
 
     # Формируем маску: первые 6 цифр видны, остальные звёздочки
     return f"{block1} {block2}** **** {block4}"
 
 
 def get_mask_account(account_number: str) -> str:
-    '''
+    """
     Маскирует номер банковского счёта.
 
     Формат: "**XXXX"
@@ -43,7 +43,7 @@ def get_mask_account(account_number: str) -> str:
 
     Возвращает:
         str: Замаскированный номер счёта.
-    '''
+    """
 
     if len(account_number) < 4:
         return f"**{account_number}"

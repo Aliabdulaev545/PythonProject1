@@ -32,5 +32,5 @@ def read_json_file(file_path: str) -> List[Dict[str, Any]]:
 
         return data
 
-    except (FileNotFoundError, json.JSONDecodeError, PermissionError):
+    except FileNotFoundError, json.JSONDecodeError, PermissionError:
         return []
