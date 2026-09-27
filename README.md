@@ -157,6 +157,28 @@ sorted_asc = sort_by_date(operations, False)
 print(sorted_asc)
 # Вывод: сначала операция с датой 2018-06-30, затем 2018-09-12, затем 2018-10-14, затем 2019-07-03
 
+### Модуль utils
+
+Содержит утилиты для чтения данных из файлов.
+
+#### `read_json_file(file_path: str) -> List[Dict[str, Any]]`
+
+Читает JSON-файл и возвращает список словарей с транзакциями.
+
+**Параметры:**
+- `file_path` (str) — путь к JSON-файлу
+
+**Возвращает:**
+- `List[Dict[str, Any]]` — список словарей с данными о транзакциях.
+  Если файл пустой, содержит не список или не найден — возвращает пустой список.
+
+**Пример:**
+```python
+from src.utils import read_json_file
+
+transactions = read_json_file("data/operations.json")
+print(len(transactions))  # Количество транзакций
+
 ## Разработка
 
 ### Установка инструментов разработки
