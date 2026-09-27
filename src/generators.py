@@ -5,9 +5,7 @@
 from typing import Any, Dict, Iterator, List
 
 
-def filter_by_currency(
-    transactions: List[Dict[str, Any]], currency_code: str
-) -> Iterator[Dict[str, Any]]:
+def filter_by_currency(transactions: List[Dict[str, Any]], currency_code: str) -> Iterator[Dict[str, Any]]:
     """
     Генератор, фильтрующий транзакции по заданной валюте.
 
@@ -31,7 +29,7 @@ def filter_by_currency(
             currency = transaction.get("operationAmount", {}).get("currency", {})
             if currency.get("code") == currency_code:
                 yield transaction
-        except (KeyError, AttributeError):
+        except KeyError, AttributeError:
             continue
 
 
@@ -58,7 +56,7 @@ def transaction_descriptions(transactions: List[Dict[str, Any]]) -> Iterator[str
             description = transaction.get("description", "")
             if description:
                 yield description
-        except (KeyError, AttributeError):
+        except KeyError, AttributeError:
             continue
 
 
@@ -87,7 +85,5 @@ def card_number_generator(start: int, end: int) -> Iterator[str]:
     """
     for number in range(start, end + 1):
         card_number = f"{number:016d}"
-        formatted = " ".join(
-            [card_number[i:i + 4] for i in range(0, 16, 4)]
-        )
+        formatted = " ".join([card_number[i : i + 4] for i in range(0, 16, 4)])
         yield formatted

@@ -120,14 +120,15 @@ class TestFilterByCurrency:
         result = list(filter_by_currency(transactions, "USD"))
         assert result == []
 
-    @pytest.mark.parametrize("currency_code, expected_count", [
-        ("USD", 3),
-        ("RUB", 2),
-        ("EUR", 0),
-    ])
-    def test_filter_by_currency_parametrized(
-        self, sample_transactions, currency_code, expected_count
-    ):
+    @pytest.mark.parametrize(
+        "currency_code, expected_count",
+        [
+            ("USD", 3),
+            ("RUB", 2),
+            ("EUR", 0),
+        ],
+    )
+    def test_filter_by_currency_parametrized(self, sample_transactions, currency_code, expected_count):
         """Параметризованный тест фильтрации по разным валютам."""
         result = list(filter_by_currency(sample_transactions, currency_code))
         assert len(result) == expected_count
@@ -168,17 +169,24 @@ class TestTransactionDescriptions:
 class TestCardNumberGenerator:
     """Тесты для генератора card_number_generator."""
 
-    @pytest.mark.parametrize("start, end, expected", [
-        (1, 5, [
-            "0000 0000 0000 0001",
-            "0000 0000 0000 0002",
-            "0000 0000 0000 0003",
-            "0000 0000 0000 0004",
-            "0000 0000 0000 0005",
-        ]),
-        (9999, 9999, ["0000 0000 0000 9999"]),
-        (0, 0, ["0000 0000 0000 0000"]),
-    ])
+    @pytest.mark.parametrize(
+        "start, end, expected",
+        [
+            (
+                1,
+                5,
+                [
+                    "0000 0000 0000 0001",
+                    "0000 0000 0000 0002",
+                    "0000 0000 0000 0003",
+                    "0000 0000 0000 0004",
+                    "0000 0000 0000 0005",
+                ],
+            ),
+            (9999, 9999, ["0000 0000 0000 9999"]),
+            (0, 0, ["0000 0000 0000 0000"]),
+        ],
+    )
     def test_card_number_generator_parametrized(self, start, end, expected):
         """Параметризованный тест генератора номеров карт."""
         result = list(card_number_generator(start, end))
