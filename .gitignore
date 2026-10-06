@@ -170,3 +170,4 @@ cython_debug/
 
 pyo
 
+logs/*.log
