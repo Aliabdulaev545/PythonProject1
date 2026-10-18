@@ -221,3 +221,22 @@ usd_transactions = filter_by_currency(transactions, "USD")
 for transaction in usd_transactions:
     print(transaction["id"])
 >>>>>>> feature/generators
+
+### Модуль file_readers
+
+Содержит функции для чтения финансовых операций из CSV и Excel файлов.
+
+#### `read_csv_file(file_path: str) -> List[Dict[str, Any]]`
+
+Читает CSV-файл и возвращает список словарей с транзакциями.
+
+#### `read_excel_file(file_path: str) -> List[Dict[str, Any]]`
+
+Читает Excel-файл и возвращает список словарей с транзакциями.
+
+**Пример:**
+```python
+from src.file_readers import read_csv_file, read_excel_file
+
+transactions_csv = read_csv_file("data/transactions.csv")
+transactions_excel = read_excel_file("data/transactions_excel.xlsx")
