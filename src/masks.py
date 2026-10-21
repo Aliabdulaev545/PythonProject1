@@ -1,43 +1,58 @@
-'''
+"""
 Модуль с функциями маскировки номеров карт и счетов.
-'''
+"""
+
+from src.logger_config import setup_logger
+
+# Создать логер для модуля masks
+logger = setup_logger("masks")
 
 
 def get_mask_card_number(card_number: str) -> str:
-    '''
+    """
     Маскирует номер банковской карты.
 
     Формат: "XXXX XX** **** XXXX"
-    Видны первые 6 цифр и последние 4 цифры,
-    остальные заменены звёздочками.
 
     Аргументы:
         card_number (str): Номер карты (16 цифр).
 
     Возвращает:
         str: Замаскированный номер карты.
-    '''
-    # Блоки по 4 цифры
-    block1 = card_number[:4]      # первые 4 цифры
-    block2 = card_number[4:6]     # 5-6 цифры
-    block4 = card_number[-4:]     # последние 4 цифры
+    """
+    logger.debug(f"Маскировка карты: {card_number}")
 
-    # Формируем маску: первые 6 цифр видны, остальные звёздочки
-    return f"{block1} {block2}** **** {block4}"
+    if len(card_number) != 16:
+        logger.error(f"Неверная длина номера карты: {len(card_number)} (ожидается 16)")
+        return "Неверный номер карты"
+
+    block1 = card_number[:4]
+    block2 = card_number[4:6]
+    block4 = card_number[-4:]
+    result = f"{block1} {block2}** **** {block4}"
+
+    logger.info(f"Карта успешно замаскирована: {result}")
+    return result
 
 
 def get_mask_account(account_number: str) -> str:
-    '''
+    """
     Маскирует номер банковского счёта.
 
     Формат: "**XXXX"
-    Видны только последние 4 цифры.
 
     Аргументы:
         account_number (str): Номер счёта (цифры).
 
     Возвращает:
         str: Замаскированный номер счёта.
-    '''
-    # Показываем только последние 4 цифры
-    return f"**{account_number[-4:]}"
+    """
+    logger.debug(f"Маскировка счёта: {account_number}")
+
+    if len(account_number) < 4:
+        logger.error(f"Слишком короткий номер счёта: {len(account_number)} (минимум 4)")
+        return f"**{account_number}"
+
+    result = f"**{account_number[-4:]}"
+    logger.info(f"Счёт успешно замаскирован: {result}")
+    return result
