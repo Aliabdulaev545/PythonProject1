@@ -240,3 +240,18 @@ from src.file_readers import read_csv_file, read_excel_file
 
 transactions_csv = read_csv_file("data/transactions.csv")
 transactions_excel = read_excel_file("data/transactions_excel.xlsx")
+
+
+### Модуль processing (дополнение)
+
+#### `process_bank_search(data, search)`
+
+Ищет транзакции, в описании которых есть заданная строка (с использованием `re`).
+
+#### `process_bank_operations(data, categories)`
+
+Подсчитывает количество операций по категориям (с использованием `Counter`).
+
+### Модуль main
+
+Содержит функцию `main()` — точку входа в программу с интерактивным меню.
